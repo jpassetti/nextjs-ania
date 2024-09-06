@@ -15,7 +15,7 @@ export default async function IndexPage() {
   }
 
   return (
-    <main className="p-24">
+    <main>
       <Slider stories={stories} />
     </main>
   );
