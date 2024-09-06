@@ -15,10 +15,7 @@ export default async function IndexPage() {
   }
 
   return (
-    <main className="flex bg-gray-100 min-h-screen flex-col p-24 gap-12">
-      <h1 className="text-4xl font-bold tracking-tighter">
-        Stories
-      </h1>
+    <main className="p-24">
       <Slider stories={stories} />
     </main>
   );
