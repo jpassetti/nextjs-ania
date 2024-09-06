@@ -1,6 +1,6 @@
 // components/Slide.tsx
 import React from 'react';
-import { Story } from '@/types/story';
+import { Story } from '@/app/types/story';
 import styles from './Slide.module.scss';
 
 interface SlideProps {

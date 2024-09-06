@@ -1,15 +1,13 @@
+// src/sanity/client.ts
+
 import { createClient, type QueryParams } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 
 // Ensure that environment variables are correctly defined
-const projectId = process.env.SANITY_PROJECT_ID;
-const dataset = process.env.SANITY_DATASET;
-const apiVersion = process.env.SANITY_API_VERSION;
+const projectId = process.env.SANITY_PROJECT_ID!;
+const dataset = process.env.SANITY_DATASET!;
+const apiVersion = process.env.SANITY_API_VERSION!;
 const useCdn = process.env.SANITY_USE_CDN === 'true';
-
-if (!projectId || !dataset || !apiVersion) {
-  throw new Error('Sanity client configuration is missing required environment variables.');
-}
 
 export const client = createClient({
   projectId,
@@ -18,17 +16,17 @@ export const client = createClient({
   useCdn,
 });
 
-export async function sanityFetch<QueryString extends string>({
+export async function sanityFetch<T>({
   query,
   params = {},
   tags,
 }: {
-  query: QueryString;
+  query: string;
   params?: QueryParams;
   tags?: string[];
-}): Promise<any> {
+}): Promise<T> {
   try {
-    const data = await client.fetch(query, params, {
+    const data = await client.fetch<T>(query, params, {
       next: {
         revalidate: process.env.NODE_ENV === 'development' ? 30 : 3600,
         tags,

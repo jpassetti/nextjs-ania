@@ -1,17 +1,35 @@
+// src/types/story.ts
+
 export interface PhotoDetail {
-  image: string;
+  image: {
+    asset: {
+      url: string; // Direct URL of the image
+    };
+  };
   caption?: string;
   location?: string;
 }
 
 export interface VideoDetails {
   videoUrl: string;
-  coverImage?: string;
+  coverImage?: {
+    _type: 'image';
+    asset: {
+      _type: 'reference';
+      _ref: string;
+    };
+  };
 }
 
 export interface AudioDetails {
   audioUrl: string;
-  coverImage?: string;
+  coverImage?: {
+    _type: 'image';
+    asset: {
+      _type: 'reference';
+      _ref: string;
+    };
+  };
 }
 
 export interface InfographicDetails {
