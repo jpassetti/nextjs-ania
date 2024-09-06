@@ -1,0 +1,9 @@
+/* Slider container */
+.sliderContainer {
+ display: flex;
+ overflow-x: scroll;
+ scroll-snap-type: x mandatory; /* Ensure snapping behavior */
+ -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+ width: 100vw; /* Full width of the viewport */
+ height: 100vh; /* Full height of the viewport */
+}

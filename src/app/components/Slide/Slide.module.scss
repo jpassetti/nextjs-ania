@@ -1,0 +1,12 @@
+.slide {
+ flex: 0 0 auto; /* Prevent slides from shrinking or growing */
+ scroll-snap-align: start; /* Snap to the start of each slide */
+ width: 100vw; /* Full width of the viewport */
+ height: 100vh; /* Full height of the viewport */
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ background-color: #fff; /* Optional: background color */
+ box-sizing: border-box;
+ padding: 20px; /* Optional: padding around the content */
+}
