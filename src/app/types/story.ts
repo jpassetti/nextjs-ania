@@ -4,6 +4,13 @@ export interface PhotoDetail {
   image: {
     asset: {
       url: string; // Direct URL of the image
+      metadata: {
+        dimensions: {
+          width: number;
+          height: number;
+          aspectRatio: number;
+        };
+      };
     };
   };
   caption?: string;
@@ -12,6 +19,8 @@ export interface PhotoDetail {
 
 export interface VideoDetails {
   videoUrl: string;
+  caption?: string;
+  location?: string;
   coverImage?: {
     _type: 'image';
     asset: {

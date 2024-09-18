@@ -1,6 +1,12 @@
 import Slide from '../Slide';
 
-const AudioStory = ({ story }) => {
+import { StoryType } from '@/app/types/story';
+
+interface AudioStoryProps {
+  story: StoryType;
+}
+
+const AudioStory: React.FC<AudioStoryProps> = ({ story }) => {
   return <Slide type="audio">Audio story</Slide>
 }
 export default AudioStory;

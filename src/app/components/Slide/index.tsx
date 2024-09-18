@@ -28,12 +28,24 @@ interface ImageProps {
     height: number; // Height of the image
   };
 }
+interface TitleProps {
+  title: string;
+}
+interface ExcerptProps {
+  excerpt: string;
+}
+interface VideoProps {
+  vimeoId: string;
+}
 
 // Main Slide component
 const Slide: React.FC<SlideProps> & {
   Caption: React.FC<CaptionProps>;
   Location: React.FC<LocationProps>;
   Image: React.FC<ImageProps>;
+  Title: React.FC<TitleProps>;
+  Excerpt: React.FC<ExcerptProps>;
+  Video: React.FC<VideoProps>;
 } = ({ children, type }) => {
   const slideClasses = cx({
     'slide': true,
