@@ -32,10 +32,10 @@ export async function sanityFetch<T>({
         tags,
       },
     });
-    console.log('Fetched data:', data); // Debug logging
+    //console.log('Fetched data:', data); // Debug logging
     return data;
   } catch (error) {
-    console.error('Sanity fetch error:', error);
+    //console.error('Sanity fetch error:', error);
     throw error;
   }
 }

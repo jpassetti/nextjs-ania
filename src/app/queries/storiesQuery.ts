@@ -9,13 +9,37 @@ export const STORIES_QUERY = `*[_type == "story"]{
   excerpt,
   featuredImage {
     asset->{
-      url
+      url,
+      metadata {
+        dimensions {
+          width,
+          height,
+          aspectRatio
+        },
+        location {
+          lat,
+          lon,
+          alt
+        }
+      }
     }
   },
   photoDetails[] {
     image {
       asset->{
-        url
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          },
+          location {
+            lat,
+            lon,
+            alt
+          }
+        }
       }
     },
     caption,
@@ -27,7 +51,9 @@ export const STORIES_QUERY = `*[_type == "story"]{
       asset->{
         url
       }
-    }
+    },
+    caption,
+    location
   },
   audioDetails {
     audioUrl,

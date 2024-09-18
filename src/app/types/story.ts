@@ -37,7 +37,7 @@ export interface InfographicDetails {
   description?: string;
 }
 
-export interface Story {
+export interface StoryType {
   _id: string;
   title: string;
   slug: {

@@ -1,7 +1,9 @@
+import styles from './Header.module.scss';
+
 const Header = () => {
   return (
-    <header className="bg-white text-black py-4 px-6">
-      <h1 className="text-3xl font-bold">Ania M. Johnston Photography</h1>
+    <header className={styles.header}>
+      <h1 className={styles.header__title}>Ania M. Johnston Photography</h1>
     </header>
   );
 }

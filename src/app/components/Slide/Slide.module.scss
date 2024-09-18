@@ -1,12 +1,84 @@
+/* Common slide styles */
 .slide {
+ //background-color: yellow; /* Background color for the slide */
  flex: 0 0 auto; /* Prevent slides from shrinking or growing */
  scroll-snap-align: start; /* Snap to the start of each slide */
- width: 100vw; /* Full width of the viewport */
- height: 100vh; /* Full height of the viewport */
+ height: 90vh; /* Full height of the viewport */
+ display: flex; /* Use flexbox for layout */
+ flex-direction: column; /* Stack children vertically */
+ justify-content: flex-start; /* Align items at the start */
+ box-sizing: border-box; /* Include padding in width/height */
+ padding: 1rem; /* Padding around the content */
+
+ img {
+  width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 0.5rem; /* Space between image and caption */
+ }
+
+ .the_caption {
+  font-family: "Merriweather", sans-serif;
+  //font-style: italic;
+  margin-top: 5px; /* Space above the caption */
+  font-size: 1.1rem;
+ }
+
+ .the_location {
+  font-family: "Roboto", sans-serif;
+  color: #6c757d; /* Dark gray color */
+  font-size: 0.9rem; /* Slightly smaller font size */
+ }
+ .the_title {
+  font-family: "Merriweather", sans-serif;
+  font-size: 1.75rem;
+  font-weight: bold;
+ }
+ .the_excerpt {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  margin-top: 5px; /* Space above the caption */
+ }
+ .embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  &::before {
+   display: block;
+   content: "";
+  }
+  &.embed-responsive-16by9 {
+   &::before {
+    padding-top: 56.25%;
+   }
+  }
+  &-item {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border: 0;
+  }
+ }
+}
+
+/* Specific slide types */
+.slide.default {
+ width: 80vw; /* Width for default slides */
  display: flex;
  flex-direction: column;
- justify-content: flex-start;
- background-color: #fff; /* Optional: background color */
- box-sizing: border-box;
- padding: 20px; /* Optional: padding around the content */
+ justify-content: center;
+ align-items: flex-start;
+}
+
+.slide.title {
+ width: 480px; /* Width for title slides */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
 }
