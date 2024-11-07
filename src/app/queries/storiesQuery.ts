@@ -1,4 +1,4 @@
-export const STORIES_QUERY = `*[_type == "story"]{
+export const STORIES_QUERY = `*[_type == "story"]|order(orderRank){
   _id,
   title,
   slug {
