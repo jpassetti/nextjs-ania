@@ -1,9 +1,12 @@
+@use "../../../../sass/abstracts/mixins";
+
 /* Common slide styles */
 .slide {
  //background-color: yellow; /* Background color for the slide */
  flex: 0 0 auto; /* Prevent slides from shrinking or growing */
  scroll-snap-align: start; /* Snap to the start of each slide */
- height: 90vh; /* Full height of the viewport */
+ //height: 90vh; /* Full height of the viewport */
+ width: 450px;
  display: flex; /* Use flexbox for layout */
  flex-direction: column; /* Stack children vertically */
  justify-content: flex-start; /* Align items at the start */
@@ -11,8 +14,10 @@
  padding: 1rem; /* Padding around the content */
 
  img {
-  width: 100%; /* Make the image responsive */
-  height: auto; /* Maintain aspect ratio */
+  height: 448.85px;
+  max-height: 960px;
+  // width: 100%; /* Make the image responsive */
+  // height: auto; /* Maintain aspect ratio */
   margin-bottom: 0.5rem; /* Space between image and caption */
  }
 
@@ -20,23 +25,37 @@
   font-family: "Merriweather", sans-serif;
   //font-style: italic;
   margin-top: 5px; /* Space above the caption */
-  font-size: 1.1rem;
+  font-size: 0.9rem;
+  @include mixins.breakpoint(sm) {
+   font-size: 1rem;
+  }
  }
 
  .the_location {
   font-family: "Roboto", sans-serif;
   color: #6c757d; /* Dark gray color */
-  font-size: 0.9rem; /* Slightly smaller font size */
+  font-size: 0.75rem; /* Slightly smaller font size */
+  @include mixins.breakpoint(sm) {
+   font-size: 0.85rem;
+  }
  }
  .the_title {
   font-family: "Merriweather", sans-serif;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  @include mixins.breakpoint(sm) {
+   font-size: 1.75rem;
+  }
  }
  .the_excerpt {
   font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   margin-top: 5px; /* Space above the caption */
+ }
+ .the_quote {
+  font-family: "Merriweather", sans-serif;
+  font-style: italic;
+  font-size: 1.5rem;
  }
  .embed-responsive {
   position: relative;
@@ -68,7 +87,8 @@
 
 /* Specific slide types */
 .slide.default {
- width: 80vw; /* Width for default slides */
+ //width: 80vw; /* Width for default slides */
+ //width: 450px;
  display: flex;
  flex-direction: column;
  justify-content: center;

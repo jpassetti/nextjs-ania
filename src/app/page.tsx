@@ -1,22 +1,25 @@
-// src/app/page.tsx
+// src/app/v2/page.tsx
 import { sanityFetch } from '@/sanity/client';
-import Slider from '@/app/components/Slider';
-import { StoryType } from '@/app/types/story';
-import { STORIES_QUERY } from '@/app/queries/storiesQuery';
+import SliderV2 from '@/app/components/SliderV2';
+import { StoryTypeV2 } from '@/app/types/story_v2';
+import { STORIES_V2_QUERY } from '@/app/queries/stories_v2_query';
 
 export default async function IndexPage() {
-  let stories: StoryType[] = [];
+  let stories: StoryTypeV2[] = [];
 
   try {
-    stories = await sanityFetch<StoryType[]>({ query: STORIES_QUERY });
-    //console.log('Fetched Stories:', stories); // Debug logging
+    // Fetch stories using the updated query
+    stories = await sanityFetch<StoryTypeV2[]>({ query: STORIES_V2_QUERY });
+
+    
   } catch (error) {
-    //console.error('Error fetching stories:', error);
+    console.error('Error fetching stories:', error);
   }
 
   return (
     <main>
-      <Slider stories={stories} />
+      {/* Pass the chapters array as a prop to the Chapters component */}
+      <SliderV2 stories={stories} />
     </main>
   );
 }

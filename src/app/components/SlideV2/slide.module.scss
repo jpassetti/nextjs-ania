@@ -1,0 +1,108 @@
+@use "../../../../sass/abstracts/mixins";
+
+/* Individual slide styles */
+.slide {
+ flex: 0 0 auto; /* Prevent shrinking or growing */
+ height: 100%; /* Ensure the slide takes full height */
+ scroll-snap-align: start; /* Ensure each slide snaps to the start */
+ display: flex; /* Use flex for layout inside the slide */
+ justify-content: center; /* Center content horizontally */
+ align-items: flex-start; /* Center content vertically */
+ padding: 1rem 0 0 0;
+ min-width: 300px; /* Minimum width for each slide */
+ max-width: 100%; /* Maximum width for each slide */
+ aspect-ratio: 1 / 1; /* Default aspect ratio, adjust as necessary */
+
+ @include mixins.breakpoint(sm) {
+  min-width: 400px; /* Adjust minimum width for small screens */
+  aspect-ratio: 1 / 1; /* Default aspect ratio for small screens */
+ }
+
+ @include mixins.breakpoint(md) {
+  min-width: 600px; /* Adjust minimum width for medium screens */
+  aspect-ratio: 1 / 1; /* Default aspect ratio for medium screens */
+ }
+}
+
+/* Banner image slide */
+.slide.bannerImage {
+ min-width: 100vw;
+ height: calc(100vh - 5rem - 3rem);
+ //background-color: red; /* Optional: background color */
+ padding: 0;
+ aspect-ratio: none; /* No default aspect ratio */
+
+ @include mixins.breakpoint(sm) {
+  min-width: 100vw;
+  aspect-ratio: 16 / 9; /* Banner image aspect ratio */
+ }
+}
+.slide.photo {
+ //min-width: 100vw;
+ height: 100%;
+ //background-color: red; /* Optional: background color */
+ aspect-ratio: 3 / 4; /* Banner image takes 3:1 aspect ratio */
+
+ @include mixins.breakpoint(sm) {
+  //min-width: 100vw;
+  aspect-ratio: 3 / 4; /* Banner image aspect ratio */
+ }
+}
+.slide.video {
+ //min-width: 100vw;
+ height: 100%;
+ //background-color: red; /* Optional: background color */
+ aspect-ratio: 3 / 4; /* Banner image takes 3:1 aspect ratio */
+
+ @include mixins.breakpoint(sm) {
+  //min-width: 100vw;
+  aspect-ratio: 3 / 4; /* Banner image aspect ratio */
+ }
+}
+.slide.infographic {
+}
+/* Spacer slide (adjustable based on size) */
+.slide.spacer {
+ //background-color: pink;
+ min-width: auto; /* No minimum width */
+ &--small {
+  //background-color: #ddd; /* Light gray background */
+  //width: 200px; /* Small spacer width */
+  aspect-ratio: 1.5 / 9; /* 1:1 aspect ratio */
+ }
+
+ &--medium {
+  //background-color: #ccc;
+  //width: 400px; /* Medium spacer width */
+  aspect-ratio: 3 / 9; /* 1:1 aspect ratio */
+ }
+
+ &--large {
+  //background-color: #bbb;
+  //width: 600px; /* Large spacer width */
+  aspect-ratio: 4.5 / 9; /* 1:1 aspect ratio */
+ }
+
+ &--xlarge {
+  //background-color: #aaa;
+  //width: 800px; /* Xlarge spacer width */
+  aspect-ratio: 6 / 9; /* 1:1 aspect ratio */
+ }
+}
+
+/* Title Slide */
+.slide.title {
+ //background-color: pink;
+ width: 100vw; /* Take full width */
+ //height: auto; /* Let height adjust according to aspect ratio */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ padding: 2rem;
+ aspect-ratio: auto; /* Default 16:9 ratio for title slides */
+ @include mixins.breakpoint(md) {
+  width: auto;
+  aspect-ratio: 1 / 1;
+ }
+}

@@ -1,5 +1,7 @@
+@use "../../../../sass/abstracts/vars";
+
 .header {
- height: 5rem;
+ height: vars.$header_height;
  //background-color: pink;
  padding: 1rem;
  border-bottom: 1px solid #ccc;

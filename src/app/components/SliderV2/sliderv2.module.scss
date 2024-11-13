@@ -1,0 +1,26 @@
+.slider_v2 {
+ //background-color: aqua; /* Optional: set your background color */
+ overflow-x: scroll; /* Enable horizontal scrolling */
+ width: 100vw; /* Full width of the viewport */
+ height: calc(100vh - 5rem - 3rem); /* Full height of the viewport */
+ display: flex; /* Flex container for stories */
+ flex-direction: column; /* Stack the chapters and the story container vertically */
+ //padding: 1rem; /* Optional: add padding to the container */
+ &_train {
+  display: flex; /* Arrange stories horizontally */
+  gap: 1rem; /* Optional: add space between stories */
+  width: max-content; /* Allow it to grow beyond the viewport if necessary */
+  height: 100%; /* Make sure it takes up the full height of the parent container */
+ }
+}
+
+/* Individual story container (each story contains multiple slides) */
+.story {
+ //background-color: orange;
+ display: flex; /* Arrange slides inside each story horizontally */
+ flex-direction: row; /* Arrange slides in a row */
+ gap: 1rem; /* Space between slides */
+ flex-shrink: 0; /* Prevent shrinking of the story */
+ align-items: flex-start; /* Align slides to the top */
+ width: auto; /* Width will depend on the content */
+}
