@@ -39,7 +39,7 @@ const Video: React.FC<VideoProps> = ({ videoUrl, coverImage, caption, metaInform
         ></iframe>
       </div>
       {caption && <p className={styles.the_caption}>{caption}</p>}
-      {metaInformation && <p className={styles.the_location}>{metaInformation}</p>}
+      {metaInformation && <p className={styles.the_meta}>{metaInformation}</p>}
     </div>
   );
 };

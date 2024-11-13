@@ -16,7 +16,7 @@ const Infographic: React.FC<InfographicProps> = ({ image, description, metaInfor
     <div className={styles.the_infographic}>
       <Image src={image} alt="Infographic" className={styles.the_image} width={width} height={height} />
       {description && <p className={styles.the_caption}>{description}</p>}
-      {metaInformation && <p className={styles.the_meta_information}>{metaInformation}</p>}
+      {metaInformation && <p className={styles.the_meta}>{metaInformation}</p>}
     </div>
   );
 };

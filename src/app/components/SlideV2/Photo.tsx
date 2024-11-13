@@ -15,7 +15,7 @@ const Photo: React.FC<PhotoProps> = ({ image, caption, location, width, height }
   <div className={styles.photo}>
     <Image src={image} alt="Photo" className={styles.the_photo} width={width} height={height} />
     {caption && <p className={styles.the_caption}>{caption}</p>}
-    {location && <p className={styles.the_location}>{location}</p>}
+    {location && <p className={styles.the_meta}>{location}</p>}
   </div>
 );
 
