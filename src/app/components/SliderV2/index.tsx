@@ -97,11 +97,11 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
                   <Slide key={slideIndex} type={slide.type} width={slide.type === 'spacer' && slide.spacerDetails ? slide.spacerDetails.width : 'small'}>
                     {slide.type === 'photo' && slide.photoDetails && (
                       <Photo
-                        image={slide.photoDetails.image.asset.url}
+                        image={slide.photoDetails.image?.asset?.url}
                         caption={slide.photoDetails.caption}
                         location={slide.photoDetails.location}
-                        width={slide.photoDetails.image.asset.metadata.dimensions.width}
-                        height={slide.photoDetails.image.asset.metadata.dimensions.height}
+                        width={slide.photoDetails.image?.asset?.metadata.dimensions.width}
+                        height={slide.photoDetails.image?.asset?.metadata.dimensions.height}
                       />
                     )}
 

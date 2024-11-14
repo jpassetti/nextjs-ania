@@ -13,6 +13,7 @@ interface VideoProps {
 
 // videoUrl is the Vimeo URL of the video
 const Video: React.FC<VideoProps> = ({ videoUrl, coverImage, caption, metaInformation }) => {
+  console.log({ videoUrl});
   const vimeoClasses = cx({
     [`embed-responsive`]: true,
     [`embed-responsive-16by9`]: true,
@@ -22,7 +23,9 @@ const Video: React.FC<VideoProps> = ({ videoUrl, coverImage, caption, metaInform
   });
 
   // The videoUrl prop will be the Vimeo URL of the video
-  const vimeoId = videoUrl?.match(/\/(\d+)$/)?.[1];
+  //const vimeoId = videoUrl?.match(/\/(\d+)$/)?.[1];
+  // The videoUrl prop will be the Vimeo URL of the video
+const vimeoId = videoUrl?.match(/vimeo\.com\/(\d+)/)?.[1];
 
   return (
     <div className={styles.the_video}>
