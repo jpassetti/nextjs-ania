@@ -78,7 +78,7 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
               )}
 
               {story.slides?.map((slide, slideIndex) => {
-                  return <Fragment><Slide type={slide.type} key={slideIndex}>
+                  return <Fragment key={slideIndex}><Slide type={slide.type}>
                     {slide.type === "photo" && slide.photoDetails && (
                       <Photo
                         image={slide.photoDetails.image?.asset?.url}
@@ -149,7 +149,7 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
 
                       {slide.type === "textOnly" && (
                         <TextOnly
-                          text={slide.textOnlyDetails.text}
+                          text={slide.textOnlyDetails?.text}
                         />
                       )}
 

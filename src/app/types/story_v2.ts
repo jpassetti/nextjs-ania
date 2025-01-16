@@ -95,7 +95,7 @@ export interface BannerImageDetails {
   };
 }
 export interface TextOnlyDetails {
-  text: string;
+  text?: string;
 }
 export interface TitleSlideDetails {
   projectTitle: string;
@@ -130,6 +130,7 @@ export interface Slide {
   spacerDetails?: SpacerDetails;
   bannerImageDetails?: BannerImageDetails;
   titleSlideDetails?: TitleSlideDetails;
+  textOnlyDetails?: TextOnlyDetails;
 }
 
 export interface StoryTypeV2 {

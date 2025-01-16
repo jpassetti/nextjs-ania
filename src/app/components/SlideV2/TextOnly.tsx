@@ -1,7 +1,7 @@
 import styles from './subcomponents.module.scss';
 
 interface TextOnlyProps {
-  text: string;
+  text?: string;
 }
 
 const TextOnly: React.FC<TextOnlyProps> = ({ text }) => {

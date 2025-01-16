@@ -6,19 +6,23 @@ import styles from './slide.module.scss';
 
 const cx = classnames.bind(styles);
 
-// Slide component definition
+// Define allowed types for the slide
+type SlideType = 'titleSlide' | 'photo' | 'video' | 'infographic' | 'audio' | 'quote' | 'spacer' | 'bannerImage' | 'title' | 'textOnly';
+
 interface SlideProps {
-  type: 'titleSlide' | 'photo' | 'video' | 'infographic' | 'audio' | 'quote' | 'spacer' | 'bannerImage' | 'title' | 'textOnly';
-  children: React.ReactNode;
-  width?: 'small' | 'medium' | 'large' | 'xlarge' ;
+  type?: SlideType; // Use the SlideType to restrict the type
+  children?: React.ReactNode;
+  width?: 'small' | 'medium' | 'large' | 'xlarge';
 }
 
 const Slide: React.FC<SlideProps> = ({ type, children, width }) => {
+  // Generate class names dynamically based on props
   const slideClasses = cx({
     slide: true,
-    [type]: true,
-    [`spacer--${width}`]: type === 'spacer',
+    [type as string]: type, // Cast 'type' to string since classnames expects a string key
+    [`spacer--${width}`]: type === 'spacer', // Add conditional class for width
   });
+
   return (
     <div className={slideClasses}>
       {children}
