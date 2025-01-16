@@ -94,9 +94,27 @@ export interface BannerImageDetails {
     };
   };
 }
+export interface TextOnlyDetails {
+  text: string;
+}
+export interface TitleSlideDetails {
+  projectTitle: string;
+  image: {
+    asset: {
+      url: string;
+      metadata: {
+        dimensions: {
+          width: number;
+          height: number;
+          aspectRatio: number;
+        };
+      };
+    };
+  };
+}
 
 export interface Slide {
-  type: 'photo' | 'video' | 'audio' | 'infographic' | 'quote' | 'spacer' | 'bannerImage';
+  type: 'photo' | 'video' | 'audio' | 'infographic' | 'quote' | 'spacer' | 'bannerImage' | 'titleSlide' | 'textOnly';
   excerpt?: string;
   featuredImage?: {
     asset: {
@@ -111,6 +129,7 @@ export interface Slide {
   quoteDetails?: QuoteDetails;
   spacerDetails?: SpacerDetails;
   bannerImageDetails?: BannerImageDetails;
+  titleSlideDetails?: TitleSlideDetails;
 }
 
 export interface StoryTypeV2 {

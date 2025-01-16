@@ -6,12 +6,13 @@
  flex: 0 0 auto; /* Prevent slides from shrinking or growing */
  scroll-snap-align: start; /* Snap to the start of each slide */
  //height: 90vh; /* Full height of the viewport */
- width: 450px;
+ //  width: 450px;
  display: flex; /* Use flexbox for layout */
  flex-direction: column; /* Stack children vertically */
  justify-content: flex-start; /* Align items at the start */
  box-sizing: border-box; /* Include padding in width/height */
  padding: 1rem; /* Padding around the content */
+ background-color: limegreen;
 
  img {
   height: 448.85px;
@@ -101,4 +102,5 @@
  flex-direction: column;
  justify-content: center;
  align-items: center;
+ background-color: aqua;
 }

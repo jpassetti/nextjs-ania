@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:3001": "PORT=3001 next dev"
   },
   "dependencies": {
     "@sanity/image-url": "^1.0.2",

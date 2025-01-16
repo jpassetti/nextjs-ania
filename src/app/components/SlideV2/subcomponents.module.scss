@@ -1,5 +1,45 @@
 @use "../../../../sass/abstracts/mixins";
 
+.the_title_slide {
+ width: 100vw;
+ height: 100vh;
+ background-size: cover;
+ background-position: center center;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ &::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+ }
+ &__text {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  @include mixins.breakpoint(sm) {
+   padding: 4rem;
+  }
+ }
+}
+.textOnly_container {
+ //background-color: red;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
 .the_banner_image {
  width: 100%;
  height: 100%;
@@ -31,16 +71,18 @@
 }
 .the_title {
  font-family: "Merriweather", sans-serif;
- font-size: 1.5rem;
+ font-size: 2rem;
  font-weight: bold;
+ //  background-color: green;
+ margin-bottom: 1rem;
  @include mixins.breakpoint(sm) {
-  font-size: 1.75rem;
+  font-size: 2.25rem;
  }
  @include mixins.breakpoint(md) {
-  font-size: 2rem;
+  font-size: 2.75rem;
  }
  @include mixins.breakpoint(lg) {
-  font-size: 2.25rem;
+  font-size: 3.5rem;
  }
 }
 .the_excerpt {

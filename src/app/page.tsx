@@ -20,6 +20,7 @@ export default async function IndexPage() {
     <main>
       {/* Pass the chapters array as a prop to the Chapters component */}
       <SliderV2 stories={stories} />
+    
     </main>
   );
 }

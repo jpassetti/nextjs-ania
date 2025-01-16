@@ -8,7 +8,7 @@ const cx = classnames.bind(styles);
 
 // Slide component definition
 interface SlideProps {
-  type: 'title' | 'photo' | 'video' | 'infographic' | 'audio' | 'quote' | 'spacer' | 'bannerImage';
+  type: 'titleSlide' | 'photo' | 'video' | 'infographic' | 'audio' | 'quote' | 'spacer' | 'bannerImage' | 'title' | 'textOnly';
   children: React.ReactNode;
   width?: 'small' | 'medium' | 'large' | 'xlarge' ;
 }

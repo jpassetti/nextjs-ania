@@ -135,6 +135,26 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
           }
         }
       }
+    },
+
+    textOnlyDetails {
+      text
+    },
+
+    titleSlideDetails {
+      projectTitle,
+      image {
+        asset->{
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            },
+          }
+        }
+      }
     }
   }
 }`;

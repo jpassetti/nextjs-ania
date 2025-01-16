@@ -1,23 +1,35 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { StoryTypeV2 } from '../../types/story_v2';
+import { useState, useEffect, useRef, Fragment } from "react";
+import { StoryTypeV2 } from "../../types/story_v2";
 
-// Subcomponents
-import Slide from '../SlideV2';
-import Photo from '../SlideV2/Photo';
-import Video from '../SlideV2/Video';
-import Infographic from '../SlideV2/Infographic';
-import Audio from '../SlideV2/Audio';
-import Quote from '../SlideV2/Quote';
-import Spacer from '../SlideV2/Spacer';
-import Title from '../SlideV2/Title';
-import Excerpt from '../SlideV2/Excerpt';
-import BannerImage from '../SlideV2/BannerImage';
-import Chapters from '../Chapters';
+import Slide from "../SlideV2";
+import Photo from "../SlideV2/Photo";
+import Video from "../SlideV2/Video";
+import Infographic from "../SlideV2/Infographic";
+import Audio from "../SlideV2/Audio";
+import Quote from "../SlideV2/Quote";
+import BannerImage from "../SlideV2/BannerImage";
+import TextOnly from "../SlideV2/TextOnly";
+import Title from "../SlideV2/Title";
+import TitleSlide from "../SlideV2/TitleSlide";
+import Chapters from "../Chapters";
 
-// Styles
-import styles from './sliderv2.module.scss';
+import styles from "./sliderv2.module.scss";
+
+/*
+todo:
+Justify "Blinded Flight" a bit left and use a smaller text
+Under "Blinded Flight" text put your name in smaller lettering.
+In the upper right of the "Blinded Flight" banner, add an arrow and a "scroll right to read story".
+Convert the videos to Autoplay.
+Add Titles above all captions so that people don't have to read captions unless they want to.
+Add the quote that goes along with 1 billion birds below the 1 billion birds PNG (maybe it pops up below as you scroll)
+Justify all of your section titles and section descriptions to the right so that they take up less horizontal space to decrease horizontal scroll realstate.
+Use a bigger font for chapter titles.
+Make sure all images are cropped the same.
+Create a "Read More" section at the end.
+*/
 
 interface SliderV2Props {
   stories: StoryTypeV2[];
@@ -30,82 +42,60 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
   // Map the stories array to extract the menuLabel for the Chapters component
   const chapters = stories.map((story) => story.menuLabel);
 
-  // Set up the Intersection Observer to detect when a story is in view within the scroll container
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const storyId = entry.target.id.replace('story', ''); // Extract index from story ID
-            setActiveIndex(Number(storyId)); // Update active index when a story enters the viewport
-          }
-        });
-      },
-      { 
-        root: sliderTrainRef.current, // Set root to the scroll container
-        threshold: 0.5, // Trigger when 50% of the story is in view
-      }
-    );
-
-    const storyElements = sliderTrainRef.current?.querySelectorAll('.story');
-    storyElements?.forEach((element) => {
-      observer.observe(element); // Start observing each story
-    });
-
-    // Cleanup the observer on component unmount
-    return () => {
-      storyElements?.forEach((element) => {
-        observer.unobserve(element); // Stop observing each story
-      });
-    };
-  }, []);
-
-  // Scroll to the correct story when the activeIndex changes
-  useEffect(() => {
+    // Scroll to the correct story when the activeIndex changes
     if (sliderTrainRef.current) {
       const storyElement = document.getElementById(`story${activeIndex}`);
       if (storyElement) {
-        // Scroll to the story element, aligning to the left of the viewport
         storyElement.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'start', // Align to the left edge of the scroll container
+          behavior: "smooth",
+          inline: "start", // Align to the left edge of the scroll container
         });
       }
     }
   }, [activeIndex]);
 
-  return (
-    <section>
+  return <div>
       <Chapters
         chapters={chapters}
         activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex} // Pass down setActiveIndex for chapter clicks
+        setActiveIndex={setActiveIndex}
       />
       <div className={styles.slider_v2}>
-        <div className={styles.slider_v2_train} ref={sliderTrainRef}>
-          {stories.map((story, index) => (
-            <div key={index} className={styles.story} id={`story${index}`}>
+      <div className={styles.slider_v2_train} ref={sliderTrainRef}>
+          {stories.map((story, index) => {
+            return <div
+              key={index}
+              className={`${styles.story} observer_story`}
+              id={`story${index}`}
+            >
+            
               {story.includeTitleSlide && (
                 <Slide type="title">
-                  {story.title && <Title title={story.title} />}
-                  {story.excerpt && <Excerpt excerpt={story.excerpt} />}
+                  <Title title={story.title} />
+                  <p>{story.excerpt}</p>
                 </Slide>
               )}
 
-              {story.slides &&
-                story.slides.map((slide, slideIndex) => (
-                  <Slide key={slideIndex} type={slide.type} width={slide.type === 'spacer' && slide.spacerDetails ? slide.spacerDetails.width : 'small'}>
-                    {slide.type === 'photo' && slide.photoDetails && (
+              {story.slides?.map((slide, slideIndex) => {
+                  return <Fragment><Slide type={slide.type} key={slideIndex}>
+                    {slide.type === "photo" && slide.photoDetails && (
                       <Photo
                         image={slide.photoDetails.image?.asset?.url}
                         caption={slide.photoDetails.caption}
                         location={slide.photoDetails.location}
-                        width={slide.photoDetails.image?.asset?.metadata.dimensions.width}
-                        height={slide.photoDetails.image?.asset?.metadata.dimensions.height}
+                        width={
+                          slide.photoDetails.image?.asset?.metadata.dimensions
+                            .width
+                        }
+                        height={
+                          slide.photoDetails.image?.asset?.metadata.dimensions
+                            .height
+                        }
                       />
                     )}
 
-                    {slide.type === 'video' && slide.videoDetails && (
+                    {slide.type === "video" && slide.videoDetails && (
                       <Video
                         videoUrl={slide.videoDetails.videoUrl}
                         coverImage={slide.videoDetails.coverImage?.asset?.url}
@@ -114,11 +104,11 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
                       />
                     )}
 
-                    {slide.type === 'audio' && slide.audioDetails && (
+                    {slide.type === "audio" && slide.audioDetails && (
                       <Audio audioUrl={slide.audioDetails.audioUrl} />
                     )}
 
-                    {slide.type === 'quote' && slide.quoteDetails && (
+                    {slide.type === "quote" && slide.quoteDetails && (
                       <Quote
                         quoteText={slide.quoteDetails.quoteText}
                         author={slide.quoteDetails.author}
@@ -126,28 +116,85 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
                       />
                     )}
 
-                    {slide.type === 'bannerImage' && slide.bannerImageDetails && (
-                      <BannerImage image={slide.bannerImageDetails.image.asset.url} width={slide.bannerImageDetails.image.asset.metadata.dimensions.width}
-                      height={slide.bannerImageDetails.image.asset.metadata.dimensions.height} />
-                    )}
+                    {slide.type === "bannerImage" &&
+                      slide.bannerImageDetails && (
+                        <BannerImage
+                          image={slide.bannerImageDetails.image.asset.url}
+                          width={
+                            slide.bannerImageDetails.image.asset.metadata
+                              .dimensions.width
+                          }
+                          height={
+                            slide.bannerImageDetails.image.asset.metadata
+                              .dimensions.height
+                          }
+                        />
+                      )}
 
-                    {slide.type === 'infographic' && slide.infographicDetails && (
-                      <Infographic
-                        image={slide.infographicDetails.infographicImage.asset.url}
-                        description={slide.infographicDetails.description}
-                        metaInformation={slide.infographicDetails.meta_information}
-                        width={slide.infographicDetails.infographicImage.asset.metadata.dimensions.width}
-                        height={slide.infographicDetails.infographicImage.asset.metadata.dimensions.height}
-                      />
-                    )}
-                  </Slide>
-                ))}
-            </div>
-          ))}
+                    {slide.type === "titleSlide" &&
+                      slide.titleSlideDetails && (
+                        <TitleSlide
+                          projectTitle={slide.titleSlideDetails.projectTitle}
+                          image={slide.titleSlideDetails.image.asset.url}
+                          width={
+                            slide.titleSlideDetails.image.asset.metadata
+                              .dimensions.width
+                          }
+                          height={
+                            slide.titleSlideDetails.image.asset.metadata
+                              .dimensions.height
+                          }
+                        />
+                      )}
+
+                      {slide.type === "textOnly" && (
+                        <TextOnly
+                          text={slide.textOnlyDetails.text}
+                        />
+                      )}
+
+                      {slide.type === "infographic" &&
+                      slide.infographicDetails && (
+                        <Infographic
+                          image={
+                            slide.infographicDetails.infographicImage.asset.url
+                          }
+                          description={
+                            slide.infographicDetails.description
+                          }
+                          metaInformation={
+                            slide.infographicDetails.meta_information
+                          }
+                          width={
+                            slide.infographicDetails.infographicImage.asset
+                              .metadata.dimensions.width
+                          }
+                          height={
+                            slide.infographicDetails.infographicImage.asset
+                              .metadata.dimensions.height
+                          }
+                        />
+                      )}
+                      
+                  
+                 
+            </Slide>
+            <Slide
+              type={slide.type}
+              width={
+                slide.type === "spacer" && slide.spacerDetails
+                  ? slide.spacerDetails.width
+                  : "small"
+              }
+            />
+          </Fragment>
+          })}
+           
+          </div>
+          })}
         </div>
       </div>
-    </section>
-  );
+  </div>
 };
 
 export default SliderV2;

@@ -1,26 +1,31 @@
+/* Outer Container (Viewport) */
 .slider_v2 {
- //background-color: aqua; /* Optional: set your background color */
- overflow-x: scroll; /* Enable horizontal scrolling */
+ overflow: hidden; /* Hide overflow to create a viewport effect */
  width: 100vw; /* Full width of the viewport */
  height: calc(100vh - 5rem - 3rem); /* Full height of the viewport */
- display: flex; /* Flex container for stories */
- flex-direction: column; /* Stack the chapters and the story container vertically */
- //padding: 1rem; /* Optional: add padding to the container */
- &_train {
-  display: flex; /* Arrange stories horizontally */
-  gap: 1rem; /* Optional: add space between stories */
-  width: max-content; /* Allow it to grow beyond the viewport if necessary */
-  height: 100%; /* Make sure it takes up the full height of the parent container */
- }
+ position: relative; /* Ensure proper stacking */
+ overflow-x: scroll; /* Enable horizontal scrolling */
 }
 
-/* Individual story container (each story contains multiple slides) */
+/* Inner Scrolling Container (Train) */
+.slider_v2_train {
+ display: flex; /* Arrange stories horizontally */
+ gap: 1rem;
+ width: max-content; /* Allow content to dictate total width */
+ height: 100%; /* Match parent's height */
+ scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Individual Story (Child of Train) */
 .story {
- //background-color: orange;
- display: flex; /* Arrange slides inside each story horizontally */
- flex-direction: row; /* Arrange slides in a row */
- gap: 1rem; /* Space between slides */
- flex-shrink: 0; /* Prevent shrinking of the story */
- align-items: flex-start; /* Align slides to the top */
- width: auto; /* Width will depend on the content */
+ //background-color: pink;
+ display: flex;
+ height: 100%; /* Match parent's height */
+ gap: 1rem;
+ flex-shrink: 0; /* Prevent shrinking */
+ overflow-y: scroll; /* Enable vertical scrolling */
+ width: auto; /* Allow the story to take as much width as it needs */
+ &__container {
+  height: auto; /* Allow the container to grow */
+ }
 }
