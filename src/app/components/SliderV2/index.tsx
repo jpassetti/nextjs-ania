@@ -20,17 +20,19 @@ import styles from "./sliderv2.module.scss";
 
 /*
 todo:
-Justify "Blinded Flight" a bit left and use a smaller text
-Under "Blinded Flight" text put your name in smaller lettering.
-In the upper right of the "Blinded Flight" banner, add an arrow and a "scroll right to read story".
-Convert the videos to Autoplay.
-Add Titles above all captions so that people don't have to read captions unless they want to.
-Add the quote that goes along with 1 billion birds below the 1 billion birds PNG (maybe it pops up below as you scroll)
-Justify all of your section titles and section descriptions to the right so that they take up less horizontal space to decrease horizontal scroll realstate.
-Use a bigger font for chapter titles.
-Make sure all images are cropped the same.
-Create a "Read More" section at the end.
+WIP - Justify "Blinded Flight" a bit left and use a smaller text
+Done - Under "Blinded Flight" text put your name in smaller lettering.
+WIP - In the upper right of the "Blinded Flight" banner, add an arrow and a "scroll right to read story".
+Done - Convert the videos to Autoplay.
+Question - Add Titles above all captions so that people don't have to read captions unless they want to.
+Question - Add the quote that goes along with 1 billion birds below the 1 billion birds PNG (maybe it pops up below as you scroll)
+Question - Justify all of your section titles and section descriptions to the right so that they take up less horizontal space to decrease horizontal scroll realstate.
+Done - Use a bigger font for chapter titles.
+Done - Make sure all images are cropped the same.
+Done, but needs work - Create a "Read More" section at the end.
 */
+
+
 
 interface SliderV2Props {
   stories: StoryTypeV2[];

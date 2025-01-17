@@ -1,6 +1,7 @@
 // src/types/story_v2.ts
 
 export interface PhotoDetails {
+  title?: string;
   image: {
     asset: {
       url: string; // Direct URL of the image

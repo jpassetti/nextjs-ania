@@ -34,6 +34,7 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
        
     // Photo slide
     photoDetails {
+      title,
       image {
         asset->{
           url,
