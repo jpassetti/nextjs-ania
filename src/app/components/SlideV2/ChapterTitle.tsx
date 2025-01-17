@@ -1,6 +1,12 @@
 import styles from "./subcomponents.module.scss";
 
-const ChapterTitle = ({ title, excerpt }) => {
+// Define the types for the props
+interface ChapterTitleProps {
+ title?: string; // Title should be a string
+ excerpt?: string; // Excerpt should be a string
+}
+
+const ChapterTitle: React.FC<ChapterTitleProps> = ({ title, excerpt }) => {
  return (
   <div>
    <div className={styles.the_title_block}>
@@ -10,4 +16,5 @@ const ChapterTitle = ({ title, excerpt }) => {
   </div>
  );
 };
+
 export default ChapterTitle;
