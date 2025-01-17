@@ -23,6 +23,13 @@
   aspect-ratio: 1 / 1; /* Default aspect ratio for medium screens */
  }
 }
+.slide.chapterTitle {
+ //background-color: red;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ padding: 0 2rem;
+}
 /* Banner image slide */
 .slide.bannerImage {
  min-width: 100vw;
@@ -37,15 +44,14 @@
  }
 }
 .slide.titleSlide {
- min-width: 100vw;
+ width: 100vw;
  height: calc(100vh - 5rem - 3rem);
  //background-color: red; /* Optional: background color */
  padding: 0;
- aspect-ratio: none; /* No default aspect ratio */
+ //aspect-ratio: none; /* No default aspect ratio */
  position: relative;
  @include mixins.breakpoint(sm) {
-  min-width: 100vw;
-  aspect-ratio: 16 / 9; /* Banner image aspect ratio */
+  //aspect-ratio: 16 / 9; /* Banner image aspect ratio */
  }
 }
 .slide.photo {
@@ -106,7 +112,7 @@
 /* Title Slide */
 .slide.title {
  //  background-color: tan;
- width: 100vw; /* Take full width */
+ //width: 100vw; /* Take full width */
  //height: auto; /* Let height adjust according to aspect ratio */
  display: flex;
  flex-direction: column;
@@ -122,7 +128,7 @@
 .slide.textOnly {
  width: 100vw; /* Take full width */
  aspect-ratio: auto; /* Default 16:9 ratio for title slides */
- padding: 2rem;
+ padding: 0 2rem;
  @include mixins.breakpoint(md) {
   // background-color: yellow;
   width: auto;

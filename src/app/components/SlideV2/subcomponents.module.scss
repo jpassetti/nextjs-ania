@@ -1,8 +1,8 @@
 @use "../../../../sass/abstracts/mixins";
 
 .the_title_slide {
- width: 100vw;
- height: 100vh;
+ width: 100%;
+ height: 100%;
  background-size: cover;
  background-position: center center;
  display: flex;
@@ -34,11 +34,11 @@
  }
 }
 .textOnly_container {
- //background-color: red;
+ //background-color: aqua;
  height: 100%;
  display: flex;
  flex-direction: column;
- justify-content: center;
+ justify-content: flex-start;
 }
 .the_banner_image {
  width: 100%;
@@ -61,6 +61,7 @@
  //font-style: italic;
  margin-top: 5px; /* Space above the caption */
  font-size: 0.9rem;
+ margin-bottom: 0.5rem;
  @include mixins.breakpoint(sm) {
   font-size: 1rem;
  }
@@ -80,6 +81,11 @@
  font-weight: bold;
  //  background-color: green;
  margin-bottom: 1rem;
+ &_block {
+  //background-color: pink;
+  height: 6rem;
+  margin-top: 2rem;
+ }
  @include mixins.breakpoint(sm) {
   font-size: 2.25rem;
  }
@@ -137,7 +143,7 @@
  }
 }
 .the_video {
- //background-color: green;
+ //  background-color: green;
  width: 100%;
  height: 100%;
 }
@@ -148,7 +154,7 @@
  padding: 0;
  overflow: hidden;
  margin-bottom: 0.5rem;
- //background-color: pink;
+ background-color: black;
  &::before {
   display: block;
   content: "";

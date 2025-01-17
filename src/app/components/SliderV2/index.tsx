@@ -15,6 +15,7 @@ import TextOnly from "../SlideV2/TextOnly";
 import Title from "../SlideV2/Title";
 import TitleSlide from "../SlideV2/TitleSlide";
 import Chapters from "../Chapters";
+import ChapterTitle from "../SlideV2/ChapterTitle";
 
 import styles from "./sliderv2.module.scss";
 
@@ -32,150 +33,131 @@ Done - Make sure all images are cropped the same.
 Done, but needs work - Create a "Read More" section at the end.
 */
 
-
-
 interface SliderV2Props {
-  stories: StoryTypeV2[];
+ stories: StoryTypeV2[];
 }
 
 const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sliderTrainRef = useRef<HTMLDivElement | null>(null);
+ const [activeIndex, setActiveIndex] = useState(0);
+ const sliderTrainRef = useRef<HTMLDivElement | null>(null);
 
-  // Map the stories array to extract the menuLabel for the Chapters component
-  const chapters = stories.map((story) => story.menuLabel);
+ // Map the stories array to extract the menuLabel for the Chapters component
+ const chapters = stories.map((story) => story.menuLabel);
 
-  useEffect(() => {
-    // Scroll to the correct story when the activeIndex changes
-    if (sliderTrainRef.current) {
-      const storyElement = document.getElementById(`story${activeIndex}`);
-      if (storyElement) {
-        storyElement.scrollIntoView({
-          behavior: "smooth",
-          inline: "start", // Align to the left edge of the scroll container
-        });
-      }
-    }
-  }, [activeIndex]);
+ useEffect(() => {
+  // Scroll to the correct story when the activeIndex changes
+  if (sliderTrainRef.current) {
+   const storyElement = document.getElementById(`story${activeIndex}`);
+   if (storyElement) {
+    storyElement.scrollIntoView({
+     behavior: "smooth",
+     inline: "start", // Align to the left edge of the scroll container
+    });
+   }
+  }
+ }, [activeIndex]);
 
-  return <div>
-      <Chapters
-        chapters={chapters}
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-      />
-      <div className={styles.slider_v2}>
-      <div className={styles.slider_v2_train} ref={sliderTrainRef}>
-          {stories.map((story, index) => {
-            return <div
-              key={index}
-              className={`${styles.story} observer_story`}
-              id={`story${index}`}
-            >
-            
-              {story.includeTitleSlide && (
-                <Slide type="title">
-                  <Title title={story.title} />
-                  <p>{story.excerpt}</p>
-                </Slide>
-              )}
+ return (
+  <div>
+   <Chapters
+    chapters={chapters}
+    activeIndex={activeIndex}
+    setActiveIndex={setActiveIndex}
+   />
+   <div className={styles.slider_v2}>
+    <div className={styles.slider_v2_train} ref={sliderTrainRef}>
+     {stories.map((story, index) => {
+      return (
+       <div
+        key={index}
+        className={`${styles.story} observer_story`}
+        id={`story${index}`}
+       >
+        {story.includeTitleSlide && (
+         <Slide type="chapterTitle">
+          <ChapterTitle title={story.title} excerpt={story.excerpt} />
+         </Slide>
+        )}
 
-              {story.slides?.map((slide, slideIndex) => {
-                  return <Fragment key={slideIndex}><Slide type={slide.type}>
-                    {slide.type === "titleSlide" &&
-                      slide.titleSlideDetails && (
-                        <TitleSlide
-                          titleSlideDetails={slide.titleSlideDetails}
-                        />
-                      )}
-                    {slide.type === "photo" && slide.photoDetails && (
-                      <Photo
-                        photoDetails={slide.photoDetails}
-                      />
-                    )}
+        {story.slides?.map((slide, slideIndex) => {
+         return (
+          <Fragment key={slideIndex}>
+           <Slide type={slide.type}>
+            {slide.type === "titleSlide" && slide.titleSlideDetails && (
+             <TitleSlide titleSlideDetails={slide.titleSlideDetails} />
+            )}
+            {slide.type === "photo" && slide.photoDetails && (
+             <Photo photoDetails={slide.photoDetails} />
+            )}
 
-                    {slide.type === "video" && slide.videoDetails && (
-                      <Video
-                        videoUrl={slide.videoDetails.videoUrl}
-                        coverImage={slide.videoDetails.coverImage?.asset?.url}
-                        caption={slide.videoDetails.caption}
-                        metaInformation={slide.videoDetails.meta_information}
-                      />
-                    )}
+            {slide.type === "video" && slide.videoDetails && (
+             <Video
+              videoUrl={slide.videoDetails.videoUrl}
+              coverImage={slide.videoDetails.coverImage?.asset?.url}
+              caption={slide.videoDetails.caption}
+              metaInformation={slide.videoDetails.meta_information}
+             />
+            )}
 
-                    {slide.type === "audio" && slide.audioDetails && (
-                      <Audio audioUrl={slide.audioDetails.audioUrl} />
-                    )}
+            {slide.type === "audio" && slide.audioDetails && (
+             <Audio audioUrl={slide.audioDetails.audioUrl} />
+            )}
 
-                    {slide.type === "quote" && slide.quoteDetails && (
-                      <Quote
-                        quoteText={slide.quoteDetails.quoteText}
-                        author={slide.quoteDetails.author}
-                        cite={slide.quoteDetails.cite}
-                      />
-                    )}
+            {slide.type === "quote" && slide.quoteDetails && (
+             <Quote
+              quoteText={slide.quoteDetails.quoteText}
+              author={slide.quoteDetails.author}
+              cite={slide.quoteDetails.cite}
+             />
+            )}
 
-                    {slide.type === "bannerImage" &&
-                      slide.bannerImageDetails && (
-                        <BannerImage
-                          image={slide.bannerImageDetails.image.asset.url}
-                          width={
-                            slide.bannerImageDetails.image.asset.metadata
-                              .dimensions.width
-                          }
-                          height={
-                            slide.bannerImageDetails.image.asset.metadata
-                              .dimensions.height
-                          }
-                        />
-                      )}
+            {slide.type === "bannerImage" && slide.bannerImageDetails && (
+             <BannerImage
+              image={slide.bannerImageDetails.image.asset.url}
+              width={
+               slide.bannerImageDetails.image.asset.metadata.dimensions.width
+              }
+              height={
+               slide.bannerImageDetails.image.asset.metadata.dimensions.height
+              }
+             />
+            )}
 
-                    
+            {slide.type === "textOnly" && (
+             <TextOnly text={slide.textOnlyDetails?.text} />
+            )}
 
-                      {slide.type === "textOnly" && (
-                        <TextOnly
-                          text={slide.textOnlyDetails?.text}
-                        />
-                      )}
-
-                      {slide.type === "infographic" &&
-                      slide.infographicDetails && (
-                        <Infographic
-                          image={
-                            slide.infographicDetails.infographicImage.asset.url
-                          }
-                          description={
-                            slide.infographicDetails.description
-                          }
-                          metaInformation={
-                            slide.infographicDetails.meta_information
-                          }
-                          width={
-                            slide.infographicDetails.infographicImage.asset
-                              .metadata.dimensions.width
-                          }
-                          height={
-                            slide.infographicDetails.infographicImage.asset
-                              .metadata.dimensions.height
-                          }
-                        />
-                      )}
-                      {slide.type === "spacer" && <Spacer
-                        width={slide.spacerDetails
-                        ? slide.spacerDetails.width
-                        : "small"
-                        }
-                        />
-                      }
-                  </Slide>            
+            {slide.type === "infographic" && slide.infographicDetails && (
+             <Infographic
+              image={slide.infographicDetails.infographicImage.asset.url}
+              description={slide.infographicDetails.description}
+              metaInformation={slide.infographicDetails.meta_information}
+              width={
+               slide.infographicDetails.infographicImage.asset.metadata
+                .dimensions.width
+              }
+              height={
+               slide.infographicDetails.infographicImage.asset.metadata
+                .dimensions.height
+              }
+             />
+            )}
+            {slide.type === "spacer" && (
+             <Spacer
+              width={slide.spacerDetails ? slide.spacerDetails.width : "small"}
+             />
+            )}
+           </Slide>
           </Fragment>
-          })}
-           
-          </div>
-          })}
-        </div>
-      </div>
+         );
+        })}
+       </div>
+      );
+     })}
+    </div>
+   </div>
   </div>
+ );
 };
 
 export default SliderV2;
