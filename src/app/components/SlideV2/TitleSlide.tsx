@@ -4,20 +4,31 @@ import styles from './subcomponents.module.scss';
 
 // Define the interface for the component props
 interface TitleSlideProps {
-  projectTitle: string;
-  image: string;
-  width?: number;  // Optional width
-  height?: number; // Optional height
+  titleSlideDetails : {
+    projectTitle: string;
+    image: {
+      asset : {
+        url: string;
+        metadata : {
+          dimensions : {
+            width: number;
+            height: number;
+          }
+        }
+      }
+    }
+  }
 }
 
-const TitleSlide: React.FC<TitleSlideProps> = ({ projectTitle, image, width, height }) => {
+const TitleSlide: React.FC<TitleSlideProps> = ({ titleSlideDetails }) => {
+  const { projectTitle, image } = titleSlideDetails;
   return (
     <div
       className={styles.the_title_slide}
       style={{
-        backgroundImage: `url(${image})`,
-        width: width || 'auto',   // Set default value for width if not provided
-        height: height || 'auto', // Set default value for height if not provided
+        backgroundImage: `url(${image.asset.url})`,
+        width: image.asset.metadata.dimensions.width || 'auto',   // Set default value for width if not provided
+        height: image.asset.metadata.dimensions.height || 'auto', // Set default value for height if not provided
       }}
     >
       <div className={styles.the_title_slide__text}>

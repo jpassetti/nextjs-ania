@@ -10,6 +10,7 @@ import Infographic from "../SlideV2/Infographic";
 import Audio from "../SlideV2/Audio";
 import Quote from "../SlideV2/Quote";
 import BannerImage from "../SlideV2/BannerImage";
+import Spacer from "../SlideV2/Spacer";
 import TextOnly from "../SlideV2/TextOnly";
 import Title from "../SlideV2/Title";
 import TitleSlide from "../SlideV2/TitleSlide";
@@ -79,19 +80,15 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
 
               {story.slides?.map((slide, slideIndex) => {
                   return <Fragment key={slideIndex}><Slide type={slide.type}>
+                    {slide.type === "titleSlide" &&
+                      slide.titleSlideDetails && (
+                        <TitleSlide
+                          titleSlideDetails={slide.titleSlideDetails}
+                        />
+                      )}
                     {slide.type === "photo" && slide.photoDetails && (
                       <Photo
-                        image={slide.photoDetails.image?.asset?.url}
-                        caption={slide.photoDetails.caption}
-                        location={slide.photoDetails.location}
-                        width={
-                          slide.photoDetails.image?.asset?.metadata.dimensions
-                            .width
-                        }
-                        height={
-                          slide.photoDetails.image?.asset?.metadata.dimensions
-                            .height
-                        }
+                        photoDetails={slide.photoDetails}
                       />
                     )}
 
@@ -131,21 +128,7 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
                         />
                       )}
 
-                    {slide.type === "titleSlide" &&
-                      slide.titleSlideDetails && (
-                        <TitleSlide
-                          projectTitle={slide.titleSlideDetails.projectTitle}
-                          image={slide.titleSlideDetails.image.asset.url}
-                          width={
-                            slide.titleSlideDetails.image.asset.metadata
-                              .dimensions.width
-                          }
-                          height={
-                            slide.titleSlideDetails.image.asset.metadata
-                              .dimensions.height
-                          }
-                        />
-                      )}
+                    
 
                       {slide.type === "textOnly" && (
                         <TextOnly
@@ -175,18 +158,14 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
                           }
                         />
                       )}
-                      
-                  
-                 
-            </Slide>
-            <Slide
-              type={slide.type}
-              width={
-                slide.type === "spacer" && slide.spacerDetails
-                  ? slide.spacerDetails.width
-                  : "small"
-              }
-            />
+                      {slide.type === "spacer" && <Spacer
+                        width={slide.spacerDetails
+                        ? slide.spacerDetails.width
+                        : "small"
+                        }
+                        />
+                      }
+                  </Slide>            
           </Fragment>
           })}
            
