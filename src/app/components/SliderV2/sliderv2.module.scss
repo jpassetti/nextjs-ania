@@ -1,6 +1,6 @@
 /* Outer Container (Viewport) */
 .slider_v2 {
- overflow: hidden; /* Hide overflow to create a viewport effect */
+ //overflow: hidden; /* Hide overflow to create a viewport effect */
  width: 100vw; /* Full width of the viewport */
  height: calc(100vh - 5rem - 3rem); /* Full height of the viewport */
  position: relative; /* Ensure proper stacking */

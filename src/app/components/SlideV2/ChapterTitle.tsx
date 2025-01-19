@@ -4,11 +4,16 @@ import styles from "./subcomponents.module.scss";
 interface ChapterTitleProps {
  title?: string; // Title should be a string
  excerpt?: string; // Excerpt should be a string
+ chapterIndex?: number; // Story index should be a number
 }
 
-const ChapterTitle: React.FC<ChapterTitleProps> = ({ title, excerpt }) => {
+const ChapterTitle: React.FC<ChapterTitleProps> = ({
+ title,
+ excerpt,
+ chapterIndex,
+}) => {
  return (
-  <div>
+  <div className="observer_chapter" id={`chapter${chapterIndex}`}>
    <div className={styles.the_title_block}>
     {title && <h1 className={styles.the_title}>{title}</h1>}
    </div>
