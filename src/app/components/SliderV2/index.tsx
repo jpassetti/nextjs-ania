@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, Fragment } from "react";
 import { StoryTypeV2 } from "../../types/story_v2";
 
+// Subcomponents
 import Slide from "../SlideV2";
 import Photo from "../SlideV2/Photo";
 import Video from "../SlideV2/Video";
@@ -14,24 +15,25 @@ import Spacer from "../SlideV2/Spacer";
 import TextOnly from "../SlideV2/TextOnly";
 import Title from "../SlideV2/Title";
 import TitleSlide from "../SlideV2/TitleSlide";
-import Chapters from "../Chapters";
 import ChapterTitle from "../SlideV2/ChapterTitle";
+import Chapters from "../Chapters";
 
+// Styles
 import styles from "./sliderv2.module.scss";
 
-/*
-todo:
-WIP - Justify "Blinded Flight" a bit left and use a smaller text
-Done - Under "Blinded Flight" text put your name in smaller lettering.
-WIP - In the upper right of the "Blinded Flight" banner, add an arrow and a "scroll right to read story".
-Done - Convert the videos to Autoplay.
-Question - Add Titles above all captions so that people don't have to read captions unless they want to.
-Question - Add the quote that goes along with 1 billion birds below the 1 billion birds PNG (maybe it pops up below as you scroll)
-Question - Justify all of your section titles and section descriptions to the right so that they take up less horizontal space to decrease horizontal scroll realstate.
-Done - Use a bigger font for chapter titles.
-Done - Make sure all images are cropped the same.
-Done, but needs work - Create a "Read More" section at the end.
-*/
+// Slide Type to Component Mapping
+const slideTypeComponents: { [key: string]: React.ComponentType<any> } = {
+ chapterTitle: ChapterTitle,
+ titleSlide: TitleSlide,
+ photo: Photo,
+ video: Video,
+ audio: Audio,
+ quote: Quote,
+ bannerImage: BannerImage,
+ textOnly: TextOnly,
+ infographic: Infographic,
+ spacer: Spacer,
+};
 
 interface SliderV2Props {
  stories: StoryTypeV2[];
@@ -44,8 +46,8 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
  // Map the stories array to extract the menuLabel for the Chapters component
  const chapters = stories.map((story) => story.menuLabel);
 
+ // Set the observer to update activeIndex when the story is in view
  useEffect(() => {
-  // Scroll to the correct story when the activeIndex changes
   if (sliderTrainRef.current) {
    const storyElement = document.getElementById(`story${activeIndex}`);
    if (storyElement) {
@@ -66,95 +68,31 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
    />
    <div className={styles.slider_v2}>
     <div className={styles.slider_v2_train} ref={sliderTrainRef}>
-     {stories.map((story, index) => {
-      return (
-       <div
-        key={index}
-        className={`${styles.story} observer_story`}
-        id={`story${index}`}
-       >
-        {story.includeTitleSlide && (
-         <Slide type="chapterTitle">
-          <ChapterTitle title={story.title} excerpt={story.excerpt} />
+     {stories.map((story, index) => (
+      <div
+       key={index}
+       className={`${styles.story} observer_story`}
+       id={`story${index}`}
+      >
+       {story.includeTitleSlide && (
+        <Slide type="chapterTitle">
+         <ChapterTitle title={story.title} excerpt={story.excerpt} />
+        </Slide>
+       )}
+
+       {story.slides?.map((slide, slideIndex) => {
+        // Get the component for this slide type
+        const SlideComponent = slideTypeComponents[slide.type];
+        if (!SlideComponent) return null; // Skip if no matching component found
+
+        return (
+         <Slide type={slide.type} key={slideIndex}>
+          <SlideComponent {...slide} />
          </Slide>
-        )}
-
-        {story.slides?.map((slide, slideIndex) => {
-         return (
-          <Fragment key={slideIndex}>
-           <Slide type={slide.type}>
-            {slide.type === "titleSlide" && slide.titleSlideDetails && (
-             <TitleSlide titleSlideDetails={slide.titleSlideDetails} />
-            )}
-            {slide.type === "photo" && slide.photoDetails && (
-             <Photo photoDetails={slide.photoDetails} />
-            )}
-
-            {slide.type === "video" && slide.videoDetails && (
-             <Video
-              videoDetails={slide.videoDetails}
-              // videoUrl={slide.videoDetails.videoUrl}
-              // coverImage={slide.videoDetails.coverImage?.asset?.url}
-              // caption={slide.videoDetails.caption}
-              // metaInformation={slide.videoDetails.meta_information}
-             />
-            )}
-
-            {slide.type === "audio" && slide.audioDetails && (
-             <Audio audioUrl={slide.audioDetails.audioUrl} />
-            )}
-
-            {slide.type === "quote" && slide.quoteDetails && (
-             <Quote
-              quoteText={slide.quoteDetails.quoteText}
-              author={slide.quoteDetails.author}
-              cite={slide.quoteDetails.cite}
-             />
-            )}
-
-            {slide.type === "bannerImage" && slide.bannerImageDetails && (
-             <BannerImage
-              image={slide.bannerImageDetails.image.asset.url}
-              width={
-               slide.bannerImageDetails.image.asset.metadata.dimensions.width
-              }
-              height={
-               slide.bannerImageDetails.image.asset.metadata.dimensions.height
-              }
-             />
-            )}
-
-            {slide.type === "textOnly" && (
-             <TextOnly text={slide.textOnlyDetails?.text} />
-            )}
-
-            {slide.type === "infographic" && slide.infographicDetails && (
-             <Infographic
-              image={slide.infographicDetails.infographicImage.asset.url}
-              description={slide.infographicDetails.description}
-              metaInformation={slide.infographicDetails.meta_information}
-              width={
-               slide.infographicDetails.infographicImage.asset.metadata
-                .dimensions.width
-              }
-              height={
-               slide.infographicDetails.infographicImage.asset.metadata
-                .dimensions.height
-              }
-             />
-            )}
-            {slide.type === "spacer" && (
-             <Spacer
-              width={slide.spacerDetails ? slide.spacerDetails.width : "small"}
-             />
-            )}
-           </Slide>
-          </Fragment>
-         );
-        })}
-       </div>
-      );
-     })}
+        );
+       })}
+      </div>
+     ))}
     </div>
    </div>
   </div>

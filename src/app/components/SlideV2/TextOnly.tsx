@@ -1,10 +1,13 @@
 import styles from "./subcomponents.module.scss";
 
 interface TextOnlyProps {
- text?: string;
+ textOnlyDetails: {
+  text?: string;
+ };
 }
 
-const TextOnly: React.FC<TextOnlyProps> = ({ text }) => {
+const TextOnly: React.FC<TextOnlyProps> = ({ textOnlyDetails }) => {
+ const { text } = textOnlyDetails;
  return (
   <div className={styles.textOnly_container}>
    <div className={styles.the_title_block} />
