@@ -12,7 +12,7 @@ const ChapterTitle: React.FC<ChapterTitleProps> = ({ title, excerpt }) => {
    <div className={styles.the_title_block}>
     {title && <h1 className={styles.the_title}>{title}</h1>}
    </div>
-   <p>{excerpt}</p>
+   <p className={styles.the_excerpt}>{excerpt}</p>
   </div>
  );
 };

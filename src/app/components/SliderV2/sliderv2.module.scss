@@ -10,7 +10,7 @@
 /* Inner Scrolling Container (Train) */
 .slider_v2_train {
  display: flex; /* Arrange stories horizontally */
- gap: 1rem;
+ gap: 1px;
  width: max-content; /* Allow content to dictate total width */
  height: 100%; /* Match parent's height */
  scroll-behavior: smooth; /* Smooth scrolling */
@@ -21,7 +21,7 @@
  //background-color: pink;
  display: flex;
  height: 100%; /* Match parent's height */
- gap: 1rem;
+ gap: 1px;
  flex-shrink: 0; /* Prevent shrinking */
  overflow-y: scroll; /* Enable vertical scrolling */
  width: auto; /* Allow the story to take as much width as it needs */

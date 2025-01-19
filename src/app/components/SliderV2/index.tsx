@@ -92,10 +92,11 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
 
             {slide.type === "video" && slide.videoDetails && (
              <Video
-              videoUrl={slide.videoDetails.videoUrl}
-              coverImage={slide.videoDetails.coverImage?.asset?.url}
-              caption={slide.videoDetails.caption}
-              metaInformation={slide.videoDetails.meta_information}
+              videoDetails={slide.videoDetails}
+              // videoUrl={slide.videoDetails.videoUrl}
+              // coverImage={slide.videoDetails.coverImage?.asset?.url}
+              // caption={slide.videoDetails.caption}
+              // metaInformation={slide.videoDetails.meta_information}
              />
             )}
 

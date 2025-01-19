@@ -8,7 +8,7 @@ const TextOnly: React.FC<TextOnlyProps> = ({ text }) => {
  return (
   <div className={styles.textOnly_container}>
    <div className={styles.the_title_block} />
-   {text}
+   <p className={styles.the_excerpt}>{text}</p>
   </div>
  );
 };
