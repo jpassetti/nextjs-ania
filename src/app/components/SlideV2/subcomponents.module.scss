@@ -41,10 +41,28 @@
  justify-content: flex-start;
 }
 .the_banner_image {
- width: 100%;
- height: 100%;
- background-size: cover;
- background-position: center center;
+ display: none;
+ @include mixins.breakpoint(md) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+ }
+}
+.the_banner_image_mobile {
+ padding: 1rem;
+ @include mixins.breakpoint(md) {
+  display: none;
+ }
+ img {
+  margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+ }
+ &_content {
+  //padding: 1rem;
+ }
 }
 
 .the_photo {

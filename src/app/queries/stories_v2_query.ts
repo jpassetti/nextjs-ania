@@ -137,7 +137,21 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
             },
           }
         }
-      }
+      },
+      mobileImage {
+        asset->{
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            },
+          }
+        }
+      },
+      mobileQuote,
+      mobileCitation
     },
 
     textOnlyDetails {
