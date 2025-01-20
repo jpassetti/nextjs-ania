@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./chapters.module.scss";
 
@@ -16,6 +16,9 @@ const Chapters: React.FC<ChaptersProps> = ({
  activeIndex,
  setActiveIndex,
 }) => {
+ // Reference to the chapter list container
+ const chaptersContainerRef = useRef<HTMLDivElement | null>(null);
+
  // Function to handle the click and scrolling behavior
  const handleChapterClick = (index: number) => {
   setActiveIndex(index); // Set the active index
@@ -29,19 +32,34 @@ const Chapters: React.FC<ChaptersProps> = ({
   }
  };
 
+ // useEffect to handle scrolling of the chapter tab into view when activeIndex changes
+ useEffect(() => {
+  // Ensure the manual chapter items exist
+  const manualChapters = document.querySelectorAll(".manual__chapter__item");
+
+  // Make sure the activeIndex is within bounds to prevent errors
+  if (manualChapters.length > activeIndex && manualChapters[activeIndex]) {
+   (manualChapters[activeIndex] as HTMLElement).scrollIntoView({
+    behavior: "smooth",
+    block: "center", // Center the active chapter tab in the viewport
+   });
+  }
+ }, [activeIndex]); // Trigger when activeIndex changes
+
  return (
   <div className={styles.chapters}>
-   <div className={styles.chapters__container}>
+   <div className={styles.chapters__container} ref={chaptersContainerRef}>
     <ul className={styles.chapters__list}>
      {chapters.map((chapter, index) => {
       const chapterClasses = cx({
        [`chapters__item`]: true,
-       [`active`]: index === activeIndex, // Apply 'active' class for the current active chapter
+       active: index === activeIndex, // Dynamically add the 'active' class for the current active chapter
       });
+
       return (
        <li
         key={`chapter${index}`}
-        className={chapterClasses}
+        className={`${chapterClasses} manual__chapter__item`}
         onClick={(e) => {
          e.preventDefault();
          handleChapterClick(index); // Handle chapter click and scroll
