@@ -1,6 +1,6 @@
 // components/Slide/Photo.tsx
 import React from "react";
-import Image from "next/image";
+import MyImage from "../MyImage";
 import styles from "./subcomponents.module.scss";
 
 interface PhotoProps {
@@ -27,7 +27,7 @@ const Photo: React.FC<PhotoProps> = ({ photoDetails }) => {
  return (
   <div className={styles.photo}>
    {image && (
-    <Image
+    <MyImage
      src={image.asset.url}
      alt="Photo"
      className={styles.the_photo}

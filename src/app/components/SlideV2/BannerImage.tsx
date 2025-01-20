@@ -43,7 +43,7 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
      backgroundImage: `url(${image.asset.url})`,
     }}
    ></div>
-   {mobileImage ? (
+   {mobileImage && (
     <div className={styles.the_banner_image_mobile}>
      {mobileImage && (
       <Image
@@ -60,8 +60,6 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
       )}
      </div>
     </div>
-   ) : (
-    <p>No mobile image set.</p>
    )}
   </Fragment>
  );
