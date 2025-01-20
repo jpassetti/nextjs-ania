@@ -46,10 +46,10 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
    {mobileImage && (
     <div className={styles.the_banner_image_mobile}>
      <Image
-      src={image.asset.url}
+      src={mobileImage.asset.url}
       alt="Banner Image"
-      width={image.asset.metadata.dimensions.width}
-      height={image.asset.metadata.dimensions.height}
+      width={mobileImage.asset.metadata.dimensions.width}
+      height={mobileImage.asset.metadata.dimensions.height}
      />
      <div className={styles.the_banner_image_mobile_content}>
       {mobileQuote && <p className={styles.the_quote}>{mobileQuote}</p>}
