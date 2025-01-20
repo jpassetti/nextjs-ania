@@ -43,14 +43,16 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
      backgroundImage: `url(${image.asset.url})`,
     }}
    ></div>
-   {mobileImage && (
+   {mobileImage ? (
     <div className={styles.the_banner_image_mobile}>
-     <Image
-      src={mobileImage.asset.url}
-      alt="Banner Image"
-      width={mobileImage.asset.metadata.dimensions.width}
-      height={mobileImage.asset.metadata.dimensions.height}
-     />
+     {mobileImage && (
+      <Image
+       src={mobileImage.asset.url}
+       alt="Banner Image"
+       width={mobileImage.asset.metadata.dimensions.width}
+       height={mobileImage.asset.metadata.dimensions.height}
+      />
+     )}
      <div className={styles.the_banner_image_mobile_content}>
       {mobileQuote && <p className={styles.the_quote}>{mobileQuote}</p>}
       {mobileCitation && (
@@ -58,6 +60,8 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
       )}
      </div>
     </div>
+   ) : (
+    <p>No mobile image set.</p>
    )}
   </Fragment>
  );
