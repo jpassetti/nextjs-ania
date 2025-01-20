@@ -66,6 +66,7 @@ const MyImage: React.FC<MyImageProps> = ({ src, alt, width, height }) => {
      close={() => setIsOpen(false)} // Close the lightbox when it's clicked
      slides={[{ src, alt }]} // Use the image passed as a slide in the lightbox
      plugins={[Zoom]}
+     carousel={{ finite: true }} // Disable looping and hide navigation arrows for single slides
     />
    )}
   </div>
