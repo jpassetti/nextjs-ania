@@ -12,7 +12,7 @@
  min-width: 300px; /* Minimum width for each slide */
  max-width: 100vw; /* Maximum width for each slide */
  aspect-ratio: 1 / 1; /* Default aspect ratio, adjust as necessary */
-
+ overflow-y: scroll;
  @include mixins.breakpoint(sm) {
   min-width: 400px; /* Adjust minimum width for small screens */
   aspect-ratio: 1 / 1; /* Default aspect ratio for small screens */
@@ -31,12 +31,12 @@
  display: flex;
  flex-direction: column;
  justify-content: flex-start;
- padding: 0 2rem;
+ padding: 0rem 2rem 2rem 2rem;
  @include mixins.breakpoint(sm) {
-  padding: 0 3rem;
+  padding: 0rem 3rem 2rem 3rem;
  }
  @include mixins.breakpoint(md) {
-  padding: 0 4rem;
+  padding: 0rem 4rem 2rem 4rem;
  }
 }
 /* Banner image slide */
