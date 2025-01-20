@@ -97,11 +97,26 @@
  font-size: 2rem;
  font-weight: bold;
  //  background-color: green;
- margin-bottom: 1rem;
+ //margin-bottom: 1rem;
+ padding-bottom: 1rem;
+ position: relative;
+ &::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 5rem;
+  height: 5px;
+  background-color: #ccc;
+ }
+
  &_block {
   //background-color: pink;
   height: 4rem;
   margin-top: 2rem;
+  position: relative;
+  margin-bottom: 2rem;
+
   @include mixins.breakpoint(sm) {
    height: 4.5rem;
   }
@@ -110,6 +125,7 @@
   }
   @include mixins.breakpoint(lg) {
    height: 6rem;
+   //background-color: red;
   }
  }
  @include mixins.breakpoint(sm) {
