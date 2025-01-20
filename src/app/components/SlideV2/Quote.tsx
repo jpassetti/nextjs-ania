@@ -19,9 +19,12 @@ const Quote: React.FC<QuoteProps> = ({ quoteDetails }) => {
     {/* Escape quotes properly */}
     <p className={styles.the_quote}>“{quoteText}”</p>
     <footer className={styles.the_quote_author}>
-     — {author}
-     <br />
-     {cite && <cite className={styles.the_quote_citation}>{cite}</cite>}
+     <p>— {author}</p>
+     {cite && (
+      <cite className={styles.the_quote_citation}>
+       <p>{cite}</p>
+      </cite>
+     )}
     </footer>
    </blockquote>
   </div>

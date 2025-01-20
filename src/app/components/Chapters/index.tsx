@@ -39,10 +39,19 @@ const Chapters: React.FC<ChaptersProps> = ({
 
   // Make sure the activeIndex is within bounds to prevent errors
   if (manualChapters.length > activeIndex && manualChapters[activeIndex]) {
-   (manualChapters[activeIndex] as HTMLElement).scrollIntoView({
+   const chapterItem = manualChapters[activeIndex] as HTMLElement;
+
+   // Scroll the chapter tab into view with 1rem offset
+   chapterItem.scrollIntoView({
     behavior: "smooth",
     block: "center", // Center the active chapter tab in the viewport
+    inline: "start", // Align to the start of the scroll container
    });
+
+   // Adjust the scroll position by 1rem offset
+   if (chaptersContainerRef.current) {
+    chaptersContainerRef.current.scrollLeft -= 16; // Adjust the scroll position by 1rem (16px)
+   }
   }
  }, [activeIndex]); // Trigger when activeIndex changes
 
