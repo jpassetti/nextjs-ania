@@ -26,6 +26,7 @@ interface VideoProps {
 
 const Video: React.FC<VideoProps> = ({ videoDetails }) => {
  const [autoplayed, setAutoplayed] = useState(false);
+ const [isPaused, setIsPaused] = useState(true); // To track the state of the video (paused/playing)
  const videoRef = useRef<HTMLIFrameElement | null>(null);
 
  const { videoUrl, coverImage, caption, meta_information } = videoDetails;
@@ -42,23 +43,35 @@ const Video: React.FC<VideoProps> = ({ videoDetails }) => {
  // Extract Vimeo ID
  const vimeoId = videoUrl?.match(/vimeo\.com\/(\d+)/)?.[1];
 
- // Intersection Observer setup
+ // Intersection Observer setup with debouncing mechanism
  useEffect(() => {
+  let timer: NodeJS.Timeout | null = null;
+
   const observer = new IntersectionObserver(
    (entries) => {
     entries.forEach((entry) => {
      const iframe = entry.target as HTMLIFrameElement;
+
      if (entry.isIntersecting) {
-      // Play the video when it is in view
-      if (!autoplayed) {
-       iframe.src = iframe.src + "?autoplay=1"; // Append autoplay=1 to the URL
-       setAutoplayed(true);
-      } else {
-       iframe.contentWindow?.postMessage({ method: "play" }, "*"); // Play the video when it comes back into view
-      }
+      // If video is in view, delay the autoplay or resume play
+      if (timer) clearTimeout(timer); // Clear any existing timeouts
+      timer = setTimeout(() => {
+       if (isPaused && !autoplayed) {
+        iframe.src = iframe.src + "?autoplay=1"; // Append autoplay=1 to the URL
+        setAutoplayed(true);
+        setIsPaused(false); // Mark as playing
+       } else if (isPaused && autoplayed) {
+        iframe.contentWindow?.postMessage({ method: "play" }, "*"); // Resume play if already autoplayed
+        setIsPaused(false); // Mark as playing
+       }
+      }, 100); // Delay the autoplay or play action by 100ms
      } else {
-      // Pause the video when it goes out of view
-      iframe.contentWindow?.postMessage({ method: "pause" }, "*"); // Pause the video
+      // If video is out of view, pause it with a slight delay
+      if (timer) clearTimeout(timer); // Clear any existing timeouts
+      timer = setTimeout(() => {
+       iframe.contentWindow?.postMessage({ method: "pause" }, "*"); // Pause the video
+       setIsPaused(true); // Mark as paused
+      }, 100); // Delay the pause action by 100ms
      }
     });
    },
@@ -74,10 +87,11 @@ const Video: React.FC<VideoProps> = ({ videoDetails }) => {
 
   return () => {
    if (videoRef.current) {
-    observer.unobserve(videoRef.current);
+    observer.unobserve(videoRef.current); // Clean up observer when component unmounts
    }
+   if (timer) clearTimeout(timer); // Clean up timeout if it's set
   };
- }, [autoplayed]);
+ }, [autoplayed, isPaused]);
 
  return (
   <div className={styles.the_video}>
@@ -90,9 +104,9 @@ const Video: React.FC<VideoProps> = ({ videoDetails }) => {
       src={`https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&badge=0&app=0`}
       width="500"
       height="281"
-      style={{ border: "none" }} // Replacing frameBorder with style
+      style={{ border: "none" }}
       allow="autoplay; fullscreen"
-      allowFullScreen={true} // Use boolean true for allowFullScreen
+      allowFullScreen={true}
      ></iframe>
     )}
    </div>

@@ -12,6 +12,8 @@ interface TextOnlyProps {
 const TextOnly: React.FC<TextOnlyProps> = ({ textOnlyDetails }) => {
  return (
   <div className={styles.textOnly_container}>
+   {/* keep this div for styling */}
+   <div className={styles.the_title_block} />
    {/* You can keep other styling as needed */}
    {textOnlyDetails?.text && (
     <p className={styles.the_excerpt}>{textOnlyDetails.text}</p>
