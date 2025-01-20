@@ -30,7 +30,6 @@ const Photo: React.FC<PhotoProps> = ({ photoDetails }) => {
     <MyImage
      src={image.asset.url}
      alt="Photo"
-     className={styles.the_photo}
      width={image.asset.metadata.dimensions.width}
      height={image.asset.metadata.dimensions.height}
     />
