@@ -144,7 +144,9 @@ export interface StoryTypeV2 {
   order: number;
   menuLabel: string; // The label for this story in the chapters navigation menu
   includeTitleSlide: boolean; // Whether the story includes a title slide
+  invertBackgroundColor: boolean; // Whether the background color should be inverted
   excerpt?: string;
+  richExcerpt?: string;
   featuredImage?: {
     asset: {
       url: string;

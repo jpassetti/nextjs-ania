@@ -83,8 +83,17 @@
  margin-bottom: 1rem;
  &_block {
   //background-color: pink;
-  height: 6rem;
+  height: 4rem;
   margin-top: 2rem;
+  @include mixins.breakpoint(sm) {
+   height: 4.5rem;
+  }
+  @include mixins.breakpoint(md) {
+   height: 5rem;
+  }
+  @include mixins.breakpoint(lg) {
+   height: 6rem;
+  }
  }
  @include mixins.breakpoint(sm) {
   font-size: 2.25rem;
@@ -100,6 +109,36 @@
  font-family: "Roboto", sans-serif;
  font-size: 1.1rem;
  margin-top: 5px; /* Space above the caption */
+}
+.the_rich_excerpt {
+ //background-color: pink;
+ strong {
+  font-weight: bold;
+ }
+ em {
+  font-style: italic;
+ }
+ h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+ }
+ p {
+  margin-bottom: 1rem;
+ }
+ ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  li {
+   margin-bottom: 0.5rem;
+   a {
+    //color: blue;
+   }
+  }
+ }
 }
 .quote {
  //background-color: aqua;

@@ -24,14 +24,21 @@ interface SlideProps {
  type?: SlideType; // Use the SlideType to restrict the type
  children?: React.ReactNode;
  width?: "small" | "medium" | "large" | "xlarge";
+ invertBackgroundColor?: boolean;
 }
 
-const Slide: React.FC<SlideProps> = ({ type, children, width }) => {
+const Slide: React.FC<SlideProps> = ({
+ type,
+ children,
+ invertBackgroundColor,
+ width,
+}) => {
  // Generate class names dynamically based on props
  const slideClasses = cx({
   slide: true,
   [type as string]: type, // Cast 'type' to string since classnames expects a string key
   [`spacer--${width}`]: type === "spacer", // Add conditional class for width
+  [`invert-background-color`]: invertBackgroundColor, // Add conditional class for titleSlide
  });
 
  return <div className={slideClasses}>{children}</div>;

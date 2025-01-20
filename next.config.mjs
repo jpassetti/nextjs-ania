@@ -1,7 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
  images: {
-  domains: ["cdn.sanity.io", "via.placeholder.com", "blindedflight.com"],
+  remotePatterns: [
+   {
+    protocol: "https",
+    hostname: "cdn.sanity.io",
+    pathname: "/**", // Allows all paths from cdn.sanity.io
+   },
+   {
+    protocol: "https",
+    hostname: "via.placeholder.com",
+    pathname: "/**", // Allows all paths from via.placeholder.com
+   },
+   {
+    protocol: "https",
+    hostname: "blindedflight.com",
+    pathname: "/**", // Allows all paths from blindedflight.com
+   },
+  ],
  },
 };
 

@@ -110,10 +110,14 @@ const SliderV2: React.FC<SliderV2Props> = ({ stories }) => {
        id={`story${index}`}
       >
        {story.includeTitleSlide && (
-        <Slide type="chapterTitle">
+        <Slide
+         type="chapterTitle"
+         invertBackgroundColor={story.invertBackgroundColor}
+        >
          <ChapterTitle
           title={story.title}
           excerpt={story.excerpt}
+          richExcerpt={story.richExcerpt}
           chapterIndex={index}
          />
         </Slide>

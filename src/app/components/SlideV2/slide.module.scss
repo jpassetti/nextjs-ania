@@ -22,10 +22,12 @@
   min-width: 600px; /* Adjust minimum width for medium screens */
   aspect-ratio: 1 / 1; /* Default aspect ratio for medium screens */
  }
+ &.invert-background-color {
+  background-color: black;
+  color: white;
+ }
 }
 .slide.chapterTitle {
- background-color: black;
- color: white;
  display: flex;
  flex-direction: column;
  justify-content: flex-start;

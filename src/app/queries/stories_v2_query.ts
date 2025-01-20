@@ -8,7 +8,9 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
   order,
   menuLabel, // New field: Menu Label for chapters navigation
   includeTitleSlide, // Boolean to include title slide
+  invertBackgroundColor, // Boolean to invert background color
   excerpt, // Excerpt at the story level
+  richExcerpt,
   featuredImage {
     asset->{
       url,
@@ -139,7 +141,8 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
     },
 
     textOnlyDetails {
-      text
+      text,
+      richText
     },
 
     titleSlideDetails {
