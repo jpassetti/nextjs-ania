@@ -30,27 +30,29 @@ const Chapters: React.FC<ChaptersProps> = ({
  };
 
  return (
-  <div className={styles.chapters__container}>
-   <ul className={styles.chapters__list}>
-    {chapters.map((chapter, index) => {
-     const chapterClasses = cx({
-      [`chapters__item`]: true,
-      [`active`]: index === activeIndex, // Apply 'active' class for the current active chapter
-     });
-     return (
-      <li
-       key={`chapter${index}`}
-       className={chapterClasses}
-       onClick={(e) => {
-        e.preventDefault();
-        handleChapterClick(index); // Handle chapter click and scroll
-       }}
-      >
-       {chapter}
-      </li>
-     );
-    })}
-   </ul>
+  <div className={styles.chapters}>
+   <div className={styles.chapters__container}>
+    <ul className={styles.chapters__list}>
+     {chapters.map((chapter, index) => {
+      const chapterClasses = cx({
+       [`chapters__item`]: true,
+       [`active`]: index === activeIndex, // Apply 'active' class for the current active chapter
+      });
+      return (
+       <li
+        key={`chapter${index}`}
+        className={chapterClasses}
+        onClick={(e) => {
+         e.preventDefault();
+         handleChapterClick(index); // Handle chapter click and scroll
+        }}
+       >
+        {chapter}
+       </li>
+      );
+     })}
+    </ul>
+   </div>
   </div>
  );
 };
