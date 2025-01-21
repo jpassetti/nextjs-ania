@@ -19,6 +19,7 @@
   background: rgba(0, 0, 0, 0.25);
  }
  &__text {
+  width: 100%;
   z-index: 2;
   position: relative;
   display: flex;
@@ -28,8 +29,32 @@
   padding: 2rem;
   color: white;
   text-align: center;
-  @include mixins.breakpoint(sm) {
+  &__scroll {
+   display: flex;
+   gap: 1rem;
+   color: white;
+  }
+  @include mixins.breakpoint(md) {
    padding: 4rem;
+   flex-direction: row;
+   justify-content: space-between;
+  }
+  h1 {
+   //background-color: red;
+   font-size: 2rem;
+   font-family: "Merriweather", sans-serif;
+   font-style: italic;
+   margin-bottom: 1rem;
+   @include mixins.breakpoint(sm) {
+    font-size: 2.5rem;
+   }
+   @include mixins.breakpoint(md) {
+    font-size: 4rem;
+   }
+  }
+  p {
+   font-family: "Roboto", sans-serif;
+   font-weight: bold;
   }
  }
 }

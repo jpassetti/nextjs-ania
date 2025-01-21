@@ -1,5 +1,6 @@
 // components/TitleSlide.tsx
-import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import styles from "./subcomponents.module.scss";
 
 // Define the interface for the component props
@@ -32,8 +33,27 @@ const TitleSlide: React.FC<TitleSlideProps> = ({ titleSlideDetails }) => {
    }}
   >
    <div className={styles.the_title_slide__text}>
-    <h1>{projectTitle}</h1>
-    <p>scroll right to read story</p>
+    <motion.h1
+     initial={{ opacity: 0, x: -50 }}
+     animate={{ opacity: 1, x: 0 }}
+     transition={{ duration: 1.25 }}
+    >
+     {projectTitle}
+    </motion.h1>
+    <motion.div
+     className={styles.the_title_slide__text__scroll}
+     initial={{ opacity: 0, x: 50 }}
+     animate={{ opacity: 1, x: 0 }}
+     transition={{ delay: 0.5, duration: 1 }}
+    >
+     <p>Scroll right to read story</p>
+     <Image
+      src="/arrow-right-long-solid.svg"
+      alt="Long right arrow"
+      width={24}
+      height={24}
+     />
+    </motion.div>
    </div>
   </div>
  );
