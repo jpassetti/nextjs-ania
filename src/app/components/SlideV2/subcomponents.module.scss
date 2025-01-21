@@ -132,10 +132,10 @@
   font-size: 2.25rem;
  }
  @include mixins.breakpoint(md) {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
  }
  @include mixins.breakpoint(lg) {
-  font-size: 3.5rem;
+  font-size: 3rem;
  }
 }
 .the_excerpt {
