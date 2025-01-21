@@ -82,18 +82,32 @@ export interface SpacerDetails {
 }
 
 export interface BannerImageDetails {
-  image: {
-    asset: {
+    image: {
+     asset: {
       url: string;
       metadata: {
-        dimensions: {
-          width: number;
-          height: number;
-          aspectRatio: number;
-        };
+       dimensions: {
+        width: number;
+        height: number;
+       };
       };
+     };
     };
-  };
+    mobileImage?: {
+     asset: {
+      url: string;
+      metadata: {
+       dimensions: {
+        width: number;
+        height: number;
+       };
+      };
+     };
+    };
+    mobileText?: string;
+    mobileQuote?: string;
+    mobileQuoteAuthor?: string;
+    mobileCitation?: string;
 }
 export interface TextOnlyDetails {
   text?: string;

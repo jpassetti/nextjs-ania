@@ -1,6 +1,8 @@
 // components/SlideV2/Quote.tsx
 import React from "react";
 
+import BlockQuote from "./BlockQuote";
+
 import styles from "./subcomponents.module.scss";
 
 interface QuoteProps {
@@ -15,18 +17,7 @@ const Quote: React.FC<QuoteProps> = ({ quoteDetails }) => {
  const { quoteText, author, cite } = quoteDetails;
  return (
   <div className={styles.quote}>
-   <blockquote>
-    {/* Escape quotes properly */}
-    <p className={styles.the_quote}>“{quoteText}”</p>
-    <footer className={styles.the_quote_author}>
-     <p>— {author}</p>
-     {cite && (
-      <cite className={styles.the_quote_citation}>
-       <p>{cite}</p>
-      </cite>
-     )}
-    </footer>
-   </blockquote>
+   <BlockQuote quote={quoteText} author={author} citation={cite} />
   </div>
  );
 };

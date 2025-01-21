@@ -1,40 +1,25 @@
 // components/Slide/BannerImage.tsx
 import { Fragment } from "react";
 import Image from "next/image";
+import BlockQuote from "./BlockQuote";
 
 import styles from "./subcomponents.module.scss";
 
+import { BannerImageDetails } from "../../types/story_v2";
+
 interface BannerImageProps {
- bannerImageDetails: {
-  image: {
-   asset: {
-    url: string;
-    metadata: {
-     dimensions: {
-      width: number;
-      height: number;
-     };
-    };
-   };
-  };
-  mobileImage: {
-   asset: {
-    url: string;
-    metadata: {
-     dimensions: {
-      width: number;
-      height: number;
-     };
-    };
-   };
-  };
-  mobileQuote: string;
-  mobileCitation: string;
- };
+ bannerImageDetails: BannerImageDetails;
 }
 
 const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
- const { image, mobileImage, mobileQuote, mobileCitation } = bannerImageDetails;
+ const {
+  image,
+  mobileImage,
+  mobileText,
+  mobileQuote,
+  mobileQuoteAuthor,
+  mobileCitation,
+ } = bannerImageDetails;
  return (
   <Fragment>
    <div
@@ -54,10 +39,12 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
       />
      )}
      <div className={styles.the_banner_image_mobile_content}>
-      {mobileQuote && <p className={styles.the_quote}>{mobileQuote}</p>}
-      {mobileCitation && (
-       <p className={styles.the_citation}>{mobileCitation}</p>
-      )}
+      {mobileText && <p className={styles.the_caption}>{mobileText}</p>}
+      <BlockQuote
+       quote={mobileQuote}
+       author={mobileQuoteAuthor}
+       citation={mobileCitation}
+      />
      </div>
     </div>
    )}

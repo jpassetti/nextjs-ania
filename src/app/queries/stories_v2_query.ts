@@ -150,7 +150,9 @@ export const STORIES_V2_QUERY = `*[_type == "story_v2"]|order(orderRank){
           }
         }
       },
+      mobileText,
       mobileQuote,
+      mobileQuoteAuthor,
       mobileCitation
     },
 
