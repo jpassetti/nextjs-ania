@@ -1,6 +1,6 @@
 // components/Slide/BannerImage.tsx
 import { Fragment } from "react";
-import Image from "next/image";
+import MyImage from "../MyImage";
 import BlockQuote from "./BlockQuote";
 
 import styles from "./subcomponents.module.scss";
@@ -31,11 +31,11 @@ const BannerImage: React.FC<BannerImageProps> = ({ bannerImageDetails }) => {
    {mobileImage && (
     <div className={styles.the_banner_image_mobile}>
      {mobileImage && (
-      <Image
+      <MyImage
        src={mobileImage.asset.url}
-       alt="Banner Image"
-       width={mobileImage.asset.metadata.dimensions.width}
-       height={mobileImage.asset.metadata.dimensions.height}
+       alt="Photo"
+       width={image.asset.metadata.dimensions.width}
+       height={image.asset.metadata.dimensions.height}
       />
      )}
      <div className={styles.the_banner_image_mobile_content}>

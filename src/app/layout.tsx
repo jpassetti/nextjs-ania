@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 
 export const metadata: Metadata = {
- title: "Blinded Flight",
+ title: "Blinded Flight | By Ania Johnston",
  description:
   "Explore the impact of building collisions on bird populations in the U.S., with an estimated 365 to 988 million birds killed annually based on 23 studies.",
 };
@@ -15,6 +15,9 @@ export default function RootLayout({
 }>) {
  return (
   <html lang="en">
+   <head>
+    <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon" />
+   </head>
    <body>
     <Header />
     {children}
