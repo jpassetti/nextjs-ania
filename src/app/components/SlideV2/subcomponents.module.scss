@@ -164,11 +164,11 @@
 }
 .the_excerpt {
  font-family: "Roboto", sans-serif;
- font-size: 1.15rem;
+ font-size: 1rem;
  line-height: 1.4;
  margin-top: 5px; /* Space above the caption */
  @include mixins.breakpoint(md) {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
  }
 }
 .the_rich_excerpt {
