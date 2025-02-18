@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.yarl__navigation_next,
+.yarl__navigation_prev {
+ display: none;
+}
