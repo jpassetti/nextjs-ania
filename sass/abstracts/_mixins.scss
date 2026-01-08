@@ -1,8 +1,10 @@
+@use "sass:meta";
+
 @mixin breakpoint($value) {
  // need to validate $value
 
  // if a string use standard breakpoints
- @if type-of($value) == "string" {
+ @if meta.type-of($value) == "string" {
   @if ($value == "xs" or $value == "phone") {
    @media (max-width: 699px) {
     @content;

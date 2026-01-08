@@ -1,7 +1,7 @@
 // src/sanity/client.ts
 
 import { createClient, type QueryParams } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 
 // Ensure that environment variables are correctly defined
 const projectId = process.env.SANITY_PROJECT_ID!;
@@ -40,7 +40,7 @@ export async function sanityFetch<T>({
   }
 }
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 export function urlFor(source: any) {
   return builder.image(source);

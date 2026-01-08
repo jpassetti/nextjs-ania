@@ -45,7 +45,10 @@ const Video: React.FC<VideoProps> = ({ videoDetails }) => {
 
  // Intersection Observer setup with debouncing mechanism
  useEffect(() => {
-  let timer: NodeJS.Timeout | null = null;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const iframeEl = videoRef.current;
+
+    if (!iframeEl) return;
 
   const observer = new IntersectionObserver(
    (entries) => {
@@ -81,14 +84,11 @@ const Video: React.FC<VideoProps> = ({ videoDetails }) => {
    }
   );
 
-  if (videoRef.current) {
-   observer.observe(videoRef.current);
-  }
+    observer.observe(iframeEl);
 
   return () => {
-   if (videoRef.current) {
-    observer.unobserve(videoRef.current); // Clean up observer when component unmounts
-   }
+    observer.unobserve(iframeEl); // Clean up observer when component unmounts
+    observer.disconnect();
    if (timer) clearTimeout(timer); // Clean up timeout if it's set
   };
  }, [autoplayed, isPaused]);
